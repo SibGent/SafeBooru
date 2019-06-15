@@ -1,0 +1,73 @@
+--
+-- For more information on build.settings, see the Project Build Settings guide at:
+-- https://docs.coronalabs.com/guide/distribution/buildSettings
+--
+
+settings =
+{
+	orientation =
+	{
+		-- Supported values for orientation:
+		-- portrait, portraitUpsideDown, landscapeLeft, landscapeRight
+		default = "portrait",
+		supported = { "portrait", },
+	},
+
+	--
+	-- Android section
+	--
+	android =
+	{
+		usesPermissions =
+		{
+			"android.permission.INTERNET",
+			"android.permission.ACCESS_NETWORK_STATE",
+			"android.permission.WRITE_EXTERNAL_STORAGE",
+		},
+	},
+
+	--
+	-- iOS section
+	--
+	iphone =
+	{
+		xcassets = "Images.xcassets",
+		plist =
+		{
+			UIStatusBarHidden = true,
+			UILaunchStoryboardName = "LaunchScreen",
+			UIBackgroundModes = {"remote-notification"},
+			NSPhotoLibraryUsageDescription = "This app would like to access the photo library.",
+			NSPhotoLibraryAddUsageDescription = "This app would like to add the photo library.",
+		},
+	},
+
+	--
+	-- Plugins section
+	--
+	plugins =
+	{
+		["CoronaProvider.native.popup.social"] =
+		{
+			publisherId = "com.coronalabs"
+		},
+		["plugin.toast"] =
+		{
+			publisherId = "com.spiralcodestudio"
+		},
+		["plugin.wallpaper"] =
+		{
+			publisherId = "tech.scotth",
+		},
+	},
+
+	--
+	-- Project section
+	--
+	excludeFiles =
+	{
+		-- Exclude unnecessary files for each platform
+		all = { "Icon.png", "Icon-*dpi.png", "Images.xcassets", },
+		android = { "LaunchScreen.storyboardc", },
+	},
+}

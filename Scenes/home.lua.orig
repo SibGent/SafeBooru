@@ -1,0 +1,101 @@
+local composer = require "composer"
+local scene = composer.newScene()
+
+local ToolBar = require "ToolBar"
+local ToolBarData = require "Model.ToolBarData"
+local HomePresenter = require "Presenter.HomePresenter"
+local DpiLib = require "Libs.DpiLib"
+local Utility = require "Libs.Utility"
+
+local sceneView
+local backgroundView
+local bannerView
+local toolBarView
+local imageView
+
+local createBackground
+, createBanner
+, calcBannerHeight
+
+function scene:create(event)
+	sceneView = self.view
+	backgroundView = createBackground()
+	bannerView = createBanner()
+	toolBarView = ToolBar.new(ToolBarData, HomePresenter.toolBarController)
+
+	HomePresenter.init(self)
+end
+
+function scene.setImage(filename, baseDir)
+	if imageView then
+		imageView:removeSelf()
+		imageView = nil
+	end
+
+	local margin = {
+		top = bannerView.height,
+		right = 0,
+		bottom = toolBarView.height,
+		left = 0,
+	}
+
+	local x = display.screenOriginX + margin.left + ( display.actualContentWidth - (margin.left + margin.right) )/2
+	local y = display.screenOriginY + margin.top + ( display.actualContentHeight - (margin.top + margin.bottom) )/2
+	local width = display.actualContentWidth - margin.left - margin.right
+	local height = display.actualContentHeight - margin.top - margin.bottom
+
+	imageView = display.newImage(sceneView, filename, baseDir, x, y)
+	imageView.filename = filename
+	imageView.baseDir = baseDir
+	imageView:addEventListener("touch", HomePresenter.gestureController)
+	Utility.fitImage(imageView, width, height, false)
+
+	transition.from(imageView, {time=300, xScale=0.1, yScale=0.1, alpha=0, easing=easing.outExpo})
+end
+
+function scene.getImage()
+	return imageView
+end
+
+function createBackground()
+	display.setDefault( "textureWrapX", "repeat" )
+	display.setDefault( "textureWrapY", "repeat" )
+
+	local background = display.newRect(sceneView, display.contentCenterX, display.contentCenterY, display.actualContentWidth, display.actualContentHeight)
+	background.fill = { type="image", filename="Assets/background.png" }
+	background.fill.scaleX = 512/background.width
+	background.fill.scaleY = 512/background.height
+
+	display.setDefault("textureWrapX", "clampToEdge")
+	display.setDefault("textureWrapY", "clampToEdge")
+
+	return background
+end
+
+function createBanner()
+	local banner = display.newRect(sceneView, display.screenOriginX, display.screenOriginY, display.actualContentWidth, calcBannerHeight())
+	banner.fill = {1, 0.5, 0.5}
+	banner:translate(banner.width*0.5, banner.height*0.5)
+
+	return banner
+end
+
+function calcBannerHeight()
+	local screenHeight = DpiLib:px2dp(display.pixelHeight)
+	local scaleFactor = display.actualContentHeight/display.pixelHeight
+	local bannerHeight = 0
+
+	if screenHeight <= 400 then
+		bannerHeight = 32
+	elseif screenHeight > 400 and screenHeight <= 720 then
+		bannerHeight = 50
+	elseif screenHeight > 720 then
+		bannerHeight = 90
+	end
+
+	return DpiLib:dp2px(bannerHeight)*scaleFactor
+end
+
+scene:addEventListener("create", scene)
+
+return scene

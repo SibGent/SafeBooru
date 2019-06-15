@@ -1,0 +1,27 @@
+{
+  "saveToGallery"      : "сохранено",
+
+  "wallpaperSet" : "обои рабочего стола установлены",
+  "wallpaperError" : "не удалось установить обои",
+
+  "errorNetworkConnection" : "не удалось загрузить картиноку\nпроверьте соединение с интернетом",
+  "errorResponseType"  : "ошибка типа данных",
+  "errorImageShare"    : "не удалось поделиться картинкой",
+  "errorImageSave"     : "не удалось сохранить картинку",
+  "errorEmptyPool"     : "не удалось загрузить картинку\nпопробуйте ещё раз",
+
+  "feedbackTitle": "Оцените приложение",
+  "feedbackMessage": "Желаете оставить отзыв?",
+  "feedbackPositive": "ДА",
+  "feedbackNegative": "ПОТОМ",
+
+  "tutorial_loadImage" : "загрузить аниме обои",
+  "tutorial_saveImage" : "сохранить",
+  "tutorial_shareImage": "поделиться",
+  "tutorial_menuImage": "меню",
+  "tutorial_swipeLeft" : "смахните влево чтобы показать следующую картинку",
+  "tutorial_swipeRight": "смахните вправо чтобы показать предыдущую картинку",
+  "tutorial_next"      : "далее",
+
+  "loading": "Загрузка",
+}

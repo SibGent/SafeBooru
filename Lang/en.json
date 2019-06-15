@@ -1,0 +1,27 @@
+{
+  "saveToGallery"      : "saved",
+
+  "wallpaperSet" : "home screen wallpaper applied",
+  "wallpaperError" : "can't set wallpaper",
+
+  "errorNetworkConnection" : "can't load image\ncheck your internet connection",
+  "errorResponseType"  : "error data type",
+  "errorImageShare"    : "can't share image",
+  "errorImageSave"     : "can't save image",
+  "errorEmptyPool"     : "can't load image\ntry again",
+
+  "feedbackTitle": "Rate our App",
+  "feedbackMessage": "Would you like write review?",
+  "feedbackPositive": "RATE NOW",
+  "feedbackNegative": "LATER",
+
+  "tutorial_loadImage" : "get random anime wallpaper",
+  "tutorial_saveImage" : "save",
+  "tutorial_shareImage": "share",
+  "tutorial_menuImage": "menu",
+  "tutorial_swipeLeft" : "swipe left to show\nnext image",
+  "tutorial_swipeRight": "swipe right to show\nprevious image",
+  "tutorial_next"      : "next",
+
+  "loading": "Loading",
+}
